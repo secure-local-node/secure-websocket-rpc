@@ -16,7 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "pify": "^4.0.1",
-    "rpc-protocol": "^0.1.3",
+    "rpc-protocol": "^0.2.1",
     "secure-wsnet": "^0.1.3"
   }
 }
