@@ -107,10 +107,15 @@ function connect(port, host, opts, cb) {
 
           function callback(done, cb) {
             return (err, res) => {
-              done(err, res)
               if ('function' === typeof cb) {
-                return cb(err, res)
+                try {
+                  cb(err, res)
+                } catch (err) {
+                  return done(err)
+                }
               }
+
+              done(err, res)
             }
           }
         }
