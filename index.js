@@ -1,3 +1,4 @@
+const { capability } = require('secret-handshake-over-hypercore')
 const protocol = require('rpc-protocol')
 const messages = require('./messages')
 const wsnet = require('secure-wsnet')
@@ -13,6 +14,7 @@ function createServer(opts, oncommand, onextension) {
   const server = new wsnet.Server(opts)
   server.on('connection', (stream) => {
     const rpc = protocol(Object.assign({ stream }, opts))
+    let auth = null
 
     if ('function' === typeof oncommand) {
       rpc.on('command', oncommand)
@@ -32,12 +34,18 @@ function createServer(opts, oncommand, onextension) {
     }
 
     rpc.extension(MANIFEST, messages.Manifest)
-    stream.on('handshake', () => {
+
+    stream.on('auth', (info) => {
+      auth = info
+    })
+
+    stream.on('handshake', (...args) => {
       rpc.send(MANIFEST, manifest)
     })
 
     for (const key of manifest.commands) {
       rpc.command(key, (req, reply) => {
+        req.auth = auth
         const args = req.arguments.concat(reply, req)
         if (0 === req.arguments.length) {
           args.unshift(undefined)
@@ -124,7 +132,31 @@ function connect(port, host, opts, cb) {
   }
 }
 
+function compareCapability(left, right) {
+  if ('string' === typeof left) {
+    left = capability(left)
+  }
+
+  if ('string' === typeof right) {
+    right = capability(right)
+  }
+
+  return Buffer.compare(Buffer.from(left), Buffer.from(right))
+}
+
+function containsCapability(capabilities, capability) {
+  for (const cap of capabilities) {
+    if (0 === compareCapability(cap, capability)) {
+      return true
+    }
+  }
+
+  return false
+}
+
 module.exports = {
+  containsCapability,
+  compareCapability,
   createServer,
   connect
 }
