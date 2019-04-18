@@ -1,0 +1,22 @@
+{
+  "name": "secure-rpc-websocket",
+  "version": "0.0.1",
+  "description": "Secure RPC over web sockets",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "keywords": [
+    "secure",
+    "rpc",
+    "web",
+    "socket"
+  ],
+  "author": "Joseph Werle <joseph.werle@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "pify": "^4.0.1",
+    "rpc-protocol": "^0.1.3",
+    "secure-wsnet": "^0.1.3"
+  }
+}
