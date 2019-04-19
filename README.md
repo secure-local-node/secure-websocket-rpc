@@ -54,7 +54,7 @@ Connect to a host specified by `port` and `host` where `port`, `host`, and `opts
 const socket = rpc.connect(3000, 'localhost', opts)
 ```
 
-### `compareCapability(left, right)`
+### `rpc.compareCapability(left, right)`
 
 Static method for comparing two capabilities (converting each to a `Buffer` if necessary). Returns 0 if `left` and `right` are equal, 1 if `right` should come before `left` when sorted, and -1 if `right` should come after `left` when sorted.
 
@@ -65,7 +65,7 @@ const right = 'hello'
 rpc.compareCapability(left, right) // = 0
 ```
 
-### `containsCapability(capabilities, capability)`
+### `rpc.containsCapability(capabilities, capability)`
 
 Static method for checking if `capability` is in `capabilities`.
 
