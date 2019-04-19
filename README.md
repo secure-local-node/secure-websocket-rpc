@@ -59,9 +59,23 @@ const socket = rpc.connect(3000, 'localhost', opts)
 
 Static method for comparing two capabilities (converting each to a `Buffer` if necessary). Returns 0 if `left` and `right` are equal, 1 if `right` should come before `left` when sorted, and -1 if `right` should come after `left` when sorted.
 
+```js
+const left = 'hello'
+const right = 'hello'
+
+rpc.compareCapability(left, right) // = 0
+```
+
 ### `containsCapability(capabilities, capability)`
 
 Static method for checking if `capability` is in `capabilities`.
+
+```js
+const capabilities = [ 'hello', 'world' ]
+const capability = 'world'
+
+rpc.containsCapability(capabilities, capability) // = true
+```
 
 ## License
 
