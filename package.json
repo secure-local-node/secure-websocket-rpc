@@ -13,10 +13,22 @@
     "socket"
   ],
   "author": "Joseph Werle <joseph.werle@gmail.com>",
+  "contributors": [
+    "Eric Jiang <ejiang9@gmail.com>"
+  ],
   "license": "MIT",
   "dependencies": {
     "pify": "^4.0.1",
     "rpc-protocol": "^0.2.1",
     "secure-wsnet": "^0.1.6"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/secure-local-node/secure-websocket-rpc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/secure-local-node/secure-websocket-rpc/issues"
+  },
+  "homepage": "https://github.com/secure-local-node/secure-websocket-rpc#readme"
 }
