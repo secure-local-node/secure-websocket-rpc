@@ -1,5 +1,5 @@
 {
-  "name": "secure-rpc-websocket",
+  "name": "secure-websocket-rpc",
   "version": "0.1.0",
   "description": "Secure RPC over web sockets",
   "main": "index.js",
