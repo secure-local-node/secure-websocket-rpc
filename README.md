@@ -1,7 +1,6 @@
 # secure-websocket-rpc
-Secure RPC over web sockets
 
-A websocket server and client network interface for issuing secure RPC commands built on top of [secure-wsnet](https://github.com/secure-local-node/secure-wsnet). See also: [secret-handshake-over-hypercore](https://github.com/secure-local-node/secret-handshake-over-hypercore) and [rpc-protocol](https://github.com/secure-local-node/rpc-protocol)
+A server and client network interface for issuing secure RPC commands over websockets built on top of [secure-wsnet](https://github.com/secure-local-node/secure-wsnet). See also: [secret-handshake-over-hypercore](https://github.com/secure-local-node/secret-handshake-over-hypercore) and [rpc-protocol](https://github.com/secure-local-node/rpc-protocol)
 
 ## Installation
 
