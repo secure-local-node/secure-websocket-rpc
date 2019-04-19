@@ -6,12 +6,12 @@ const pify = require('pify')
 
 const MANIFEST = 0xe
 
-function createServer(opts, oncommand, onextension) {
+function createServer(opts, oncommand, onextension, onconnection) {
   if (!opts || 'object' !== typeof opts) {
     opts = {}
   }
 
-  const server = new wsnet.Server(opts)
+  const server = new wsnet.Server(opts, onconnection)
   server.on('connection', (stream) => {
     const rpc = protocol(Object.assign({ stream }, opts))
     let auth = null
