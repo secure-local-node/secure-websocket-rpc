@@ -46,7 +46,7 @@ function createServer(opts, oncommand, onextension, onconnection) {
     for (const key of manifest.commands) {
       rpc.command(key, (req, reply) => {
         req.auth = auth
-        const args = req.arguments.concat(reply, req)
+        const args = req.arguments.concat(opts.context, reply, req)
         if (0 === req.arguments.length) {
           args.unshift(undefined)
         }
