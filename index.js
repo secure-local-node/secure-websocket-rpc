@@ -30,6 +30,9 @@ function createServer(opts, oncommand, onextension, onconnection) {
     const manifest =  {
       commands: Object.keys(opts.commands || {}).filter((key) => {
         return 'function' === typeof opts.commands[key]
+      }),
+      streams: Object.keys(opts.streams || {}).filter((key) => {
+        return 'function' === typeof opts.streams[key]
       })
     }
 
@@ -51,6 +54,17 @@ function createServer(opts, oncommand, onextension, onconnection) {
           args.unshift(undefined)
         }
         return opts.commands[key](...args)
+      })
+    }
+
+    for (const key of manifest.streams) {
+      rpc.command(key, (req, reply) => {
+        req.auth = auth
+        const args = req.arguments.concat(opts.context, reply, req)
+        if (0 === req.arguments.length) {
+          args.unshift(undefined)
+        }
+        return opts.streams[key](...args)
       })
     }
   })
@@ -88,7 +102,7 @@ function connect(port, host, opts, cb) {
   }
 
   function onmanifest(manifest) {
-    if (!manifest && !Array.isArray(manifest.commands)) {
+    if (!manifest && !Array.isArray(manifest.commands) && !Array.isArray(manifest.streams)) {
       return
     }
 
@@ -125,6 +139,28 @@ function connect(port, host, opts, cb) {
 
               done(err, res)
             }
+          }
+        }
+      })
+    }
+
+    for (const key of manifest.streams) {
+      if (key in stream) {
+        continue
+      }
+
+      Object.assign(stream, {
+        [key](...args) {
+          let cb = undefined
+
+          if ('function' === typeof args[args.length - 1]) {
+            cb = args.pop()
+          }
+
+          return call()
+
+          function call(done) {
+            return rpc.call(key, args)
           }
         }
       })
