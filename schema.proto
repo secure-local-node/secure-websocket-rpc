@@ -4,6 +4,7 @@ syntax = "proto3";
 message Manifest {
   bytes id = 1;
   repeated string commands = 2;
+  repeated string streams = 3;
   Error error = 10;
   message Error {
     string name = 1;
