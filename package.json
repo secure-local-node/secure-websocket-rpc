@@ -19,10 +19,12 @@
   "license": "MIT",
   "dependencies": {
     "pify": "^4.0.1",
-    "rpc-protocol": "^0.2.1",
-    "secure-wsnet": "^0.1.7"
+    "rpc-protocol": "^0.2.2",
+    "secure-wsnet": "^0.2.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "tape": "^4.11.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/secure-local-node/secure-websocket-rpc.git"

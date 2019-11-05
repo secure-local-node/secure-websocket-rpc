@@ -6,6 +6,8 @@ const socket = rpc.connect(3000, {
   capabilities: [
     'read'
   ]
+}, (err) => {
+  console.log('error', err)
 })
 
 socket.on('connect', () => console.log('connect'))

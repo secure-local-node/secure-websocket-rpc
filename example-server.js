@@ -14,7 +14,7 @@ const server = rpc.createServer({
       return value
     },
 
-    can(capability, reply, req) {
+    can(capability, ctx, reply, req) {
       const { sessionCapabilities } = req.auth
       try {
         return rpc.containsCapability(sessionCapabilities, capability)
