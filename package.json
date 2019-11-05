@@ -20,7 +20,7 @@
   "dependencies": {
     "pify": "^4.0.1",
     "rpc-protocol": "^0.2.2",
-    "secure-wsnet": "^0.2.0"
+    "secure-wsnet": "^0.2.1"
   },
   "devDependencies": {
     "tape": "^4.11.0"
